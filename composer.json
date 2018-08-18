@@ -1,0 +1,37 @@
+{
+    "name": "iocaste/cs-fixer-command",
+    "description": "Lumen/Laravel wrapper around PHPCS-Fixer package. Used as artisan command.",
+    "authors": [
+        {
+            "name": "John.Doe",
+            "email": "iocaste.systems@gmail.com"
+        }
+    ],
+    "keywords": [
+        "php-cs-fixer",
+        "laravel",
+        "lumen",
+        "artisan",
+        "psr",
+        "codequality"
+    ],
+    "license": "MIT",
+    "type": "library",
+    "require": {
+        "roave/security-advisories": "dev-master",
+        "php": ">=7.1.3",
+        "illuminate/support": "5.6.x",
+        "friendsofphp/php-cs-fixer": "2.12.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "~1.0",
+        "illuminate/console": "5.6.x"
+    },
+    "autoload": {
+        "psr-4": {
+            "Iocaste\\CsFixer\\": "src"
+        },
+        "files": []
+    }
+}

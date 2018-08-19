@@ -28,6 +28,13 @@ use ArrayIterator;
 class PhpCsCommand extends Command
 {
     /**
+     * The default verbosity of output commands.
+     *
+     * @var int
+     */
+    protected $verbosity = OutputInterface::VERBOSITY_VERBOSE;
+
+    /**
      * The console command name.
      *
      * @var string
@@ -167,7 +174,7 @@ class PhpCsCommand extends Command
             $changed,
             $fixEvent->getDuration(),
             $fixEvent->getMemory(),
-            OutputInterface::VERBOSITY_VERBOSE <= $this->getOutput()->getVerbosity(),
+            OutputInterface::VERBOSITY_VERBOSE <= $this->verbosity,
             $resolver->isDryRun(),
             $this->getOutput()->isDecorated()
         );
@@ -201,9 +208,9 @@ class PhpCsCommand extends Command
     protected function getConfig(): Config
     {
         $config = new Config('artisan');
-        $config->setRules(config('fixer.rules'));
+        $config->setRules(config('phpcs.rules'));
         $config->setFinder($this->getFinder());
-        $config->setCacheFile(storage_path('framework/cache/fixer.json'));
+        $config->setCacheFile(storage_path('framework/cache/phpcs.json'));
 
         return $config;
     }
@@ -215,16 +222,7 @@ class PhpCsCommand extends Command
     {
         return Finder::create()
             ->in(base_path())
-            ->exclude([
-                'bootstrap/cache',
-                'bower_components',
-                'node_modules',
-                'tasks',
-                'public',
-                'bin',
-                'storage',
-                'vendor',
-            ])
+            ->exclude(config('phpcs.excludes'))
             ->notPath('_ide_helper_models.php')
             ->notPath('_ide_helper.php')
             ->notPath('.phpstorm.meta.php')
@@ -303,11 +301,11 @@ class PhpCsCommand extends Command
     }
 
     /**
-     * @param $resolver
+     * @param ConfigurationResolver $resolver
      *
      * @return array
      */
-    protected function manageProgress($resolver): array
+    protected function manageProgress(ConfigurationResolver $resolver): array
     {
         $finder = $resolver->getFinder();
         if ('none' === $resolver->getProgress()) {

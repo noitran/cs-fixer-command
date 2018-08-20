@@ -37,7 +37,7 @@ class HookSetupCommand extends Command
      */
     public function handle()
     {
-        $hookFile = \dirname(__DIR__) . '/../contrib/pre-commit';
+        $hookFile = \dirname(__DIR__) . '/_contrib/pre-commit';
         $gitHooksPath = config('phpcs.git_hooks_path');
 
         $this->copyPreCommitHook($hookFile, $gitHooksPath);

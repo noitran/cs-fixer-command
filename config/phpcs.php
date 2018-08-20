@@ -54,6 +54,8 @@ return [
         'phpdoc_no_package' => true,
         'phpdoc_order' => true,
         'phpdoc_add_missing_param_annotation' => true,
+        'phpdoc_separation' => true,
+        'phpdoc_trim' => true,
         'method_argument_space' => [
             'ensure_fully_multiline' => true,
             'keep_multiple_spaces_after_comma' => true,
@@ -74,5 +76,27 @@ return [
             'space' => 'single',
         ],
         'no_spaces_inside_parenthesis' => true,
+        'ternary_operator_spaces' => true,
+
+        // @PHP71Migration
+        'ternary_to_null_coalescing' => true,
+        'visibility_required' => true,
+
+        // @PHP71Migration:risky
+        'void_return' => true,
+        'random_api_migration' => true,
+        'pow_to_exponentiation' => true,
+
+        // @Symfony:risky
+        'dir_constant' => true,
+        'function_to_constant' => true,
+        'is_null' => true,
+        'modernize_types_casting' => true,
+        'no_alias_functions' => true,
     ],
+
+    /*
+     * Git base path to install pre-commit hook
+     */
+    'git_hooks_path' => base_path('.git/hooks'),
 ];

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo "Running Code Sniffer..."
+
+./develop art phpcs:fix --allow-risky=yes
+
+exit 0

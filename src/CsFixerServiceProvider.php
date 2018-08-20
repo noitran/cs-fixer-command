@@ -4,6 +4,7 @@ namespace Iocaste\CsFixer;
 
 use Illuminate\Support\ServiceProvider;
 use Iocaste\CsFixer\Console\PhpCsCommand;
+use Iocaste\CsFixer\Console\HookSetupCommand;
 use Laravel\Lumen\Application as LumenApplication;
 use Illuminate\Foundation\Application as LaravelApplication;
 
@@ -27,10 +28,16 @@ class CsFixerServiceProvider extends ServiceProvider
     {
         $this->setupConfig();
 
-        $this->app->singleton('command.phpcs.fix', function ($app) {
+        $this->app->singleton('command.phpcs.fix', function () {
             return new PhpCsCommand();
         });
+
+        $this->app->singleton('command.phpcs.install-hook', function () {
+            return new HookSetupCommand();
+        });
+
         $this->commands('command.phpcs.fix');
+        $this->commands('command.phpcs.install-hook');
     }
 
     /**

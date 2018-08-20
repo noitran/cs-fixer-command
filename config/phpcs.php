@@ -77,6 +77,7 @@ return [
         ],
         'no_spaces_inside_parenthesis' => true,
         'ternary_operator_spaces' => true,
+        'no_leading_import_slash' => true,
 
         // @PHP71Migration
         'ternary_to_null_coalescing' => true,

@@ -97,6 +97,9 @@ return [
 
     /*
      * Git base path to install pre-commit hook
+     *
+     * For default projects without docker path should be
+     * base_path('.git/hooks'),
      */
-    'git_hooks_path' => base_path('.git/hooks'),
+    'git_hooks_path' => base_path('../.git/hooks'),
 ];

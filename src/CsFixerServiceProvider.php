@@ -1,10 +1,10 @@
 <?php
 
-namespace Iocaste\CsFixer;
+namespace Noitran\CsFixer;
 
 use Illuminate\Support\ServiceProvider;
-use Iocaste\CsFixer\Console\PhpCsCommand;
-use Iocaste\CsFixer\Console\HookSetupCommand;
+use Noitran\CsFixer\Console\PhpCsCommand;
+use Noitran\CsFixer\Console\HookSetupCommand;
 use Laravel\Lumen\Application as LumenApplication;
 use Illuminate\Foundation\Application as LaravelApplication;
 

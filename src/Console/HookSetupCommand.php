@@ -1,6 +1,6 @@
 <?php
 
-namespace Iocaste\CsFixer\Console;
+namespace Noitran\CsFixer\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
@@ -35,7 +35,7 @@ class HookSetupCommand extends Command
     /**
      * Handles the Command
      */
-    public function handle()
+    public function handle(): void
     {
         $hookFile = \dirname(__DIR__) . '/_contrib/pre-commit';
         $gitHooksPath = config('phpcs.git_hooks_path');

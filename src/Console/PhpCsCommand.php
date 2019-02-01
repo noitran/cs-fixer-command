@@ -1,6 +1,6 @@
 <?php
 
-namespace Iocaste\CsFixer\Console;
+namespace Noitran\CsFixer\Console;
 
 use Illuminate\Console\Command;
 
@@ -69,11 +69,6 @@ class PhpCsCommand extends Command
     protected $description = 'Runs PHPCS-Fixer tool to fix code to follow coding standards.';
 
     /**
-     * @var Config
-     */
-    private $defaultConfig;
-
-    /**
      * @var ErrorsManager
      */
     private $errorsManager;
@@ -100,7 +95,6 @@ class PhpCsCommand extends Command
     {
         parent::__construct();
 
-        $this->defaultConfig = new Config();
         $this->errorsManager = new ErrorsManager();
         $this->eventDispatcher = new EventDispatcher();
         $this->stopwatch = new Stopwatch();
@@ -110,11 +104,11 @@ class PhpCsCommand extends Command
     /**
      * Handles the Command
      */
-    public function handle()
+    public function handle(): int
     {
         $this->validateOptions();
         $resolver = $this->getResolver();
-        list($finder, $progressOutput) = $this->manageProgress($resolver);
+        [$finder, $progressOutput] = $this->manageProgress($resolver);
         $runner = $this->getRunner($finder, $resolver);
 
         $this->stopwatch->start('fixFiles');
@@ -208,9 +202,10 @@ class PhpCsCommand extends Command
     protected function getConfig(): Config
     {
         $config = new Config('artisan');
-        $config->setRules(config('phpcs.rules'));
-        $config->setFinder($this->getFinder());
-        $config->setCacheFile(storage_path('framework/cache/phpcs.json'));
+
+        $config->setRules(config('phpcs.rules'))
+            ->setFinder($this->getFinder())
+            ->setCacheFile(storage_path('framework/cache/phpcs.json'));
 
         return $config;
     }
@@ -261,7 +256,7 @@ class PhpCsCommand extends Command
         $this->info(sprintf(
             'Loaded config <comment>%s</comment>%s.',
             $resolver->getConfig()->getName(),
-            null === $resolver->getConfigFile() ? '' : ' from "'.$resolver->getConfigFile().'"'
+            null === $resolver->getConfigFile() ? '' : ' from "' . $resolver->getConfigFile() . '"'
         ));
 
         if ($resolver->getUsingCache()) {

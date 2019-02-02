@@ -1,4 +1,4 @@
-PhpCsCommand - Lumen/Laravel wrapper around PHPCS-Fixer package. Used as artisan command
+PhpCsCommand
 ====================
 
 <p align="center">
@@ -9,3 +9,45 @@ PhpCsCommand - Lumen/Laravel wrapper around PHPCS-Fixer package. Used as artisan
 <a href="https://packagist.org/packages/iocaste/cs-fixer-command"><img src="https://img.shields.io/packagist/dt/iocaste/cs-fixer-command.svg?style=flat-square" alt="Total Downloads"></img></a>
 </p>
 
+## About
+
+Lumen/Laravel wrapper around PHPCS-Fixer package that allows, using artisan command, easly apply pre-defined coding standards to your laravel or lumen project.
+
+Wrapper uses [PHP Coding Standards Fixer package](https://github.com/FriendsOfPHP/PHP-CS-Fixer)
+
+List of all fixer rules can be found [here](https://mlocati.github.io/php-cs-fixer-configurator)
+ 
+## Features
+
+* Adds console command `php artisan phpcs:fix` that fixes your project to follow standards defined in your `config/phpcs.php`
+* Adds command to install pre-commit git hook `php artisan phpcs:install-hook`. After install phpcs:fix will be triggered before each commit and will auto fix your code
+
+## Install
+
+* Install as composer package
+
+```bash
+$ composer require noitran/cs-fixer-command
+```
+
+#### Laravel
+
+* Laravel uses provider auto discovery. Config file can be published using command
+
+```
+$ artisan vendor:publish --provider="Noitran\CsFixer\CsFixerServiceProvider"
+```
+
+#### Lumen
+
+* Open your bootstrap/app.php and register as service provider
+
+```php
+$app->register(Noitran\CsFixer\CsFixerServiceProvider::class);
+```
+
+* Config file should be loaded manually in bootstrap/app.php
+
+```php
+$app->configure('phpcs');
+```

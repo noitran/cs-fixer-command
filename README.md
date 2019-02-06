@@ -51,3 +51,33 @@ $app->register(Noitran\CsFixer\CsFixerServiceProvider::class);
 ```php
 $app->configure('phpcs');
 ```
+
+## Usage
+
+* Publish `phpcs` and change if necessary, run command for inspection `php artisan phpcs:fix`
+
+* Hook installation can be done using command `php artisan phpcs:install-hook`
+
+* Hook install command can be added into `composer.json` as post-install command, so that, at example, other team members will get pre-commit hook when installing composer dependencies at first time.
+
+#### Example: Adding as composer post-install command
+
+```json
+{
+    "name": "laravel/lumen",
+    "require": {
+        ...
+    },
+    "autoload": {
+        ...
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan phpcs:install-hook"
+        ],
+        "post-update-cmd": [
+            ...
+        ]
+    }
+}
+```

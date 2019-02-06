@@ -37,7 +37,7 @@ class HookSetupCommand extends Command
      */
     public function handle(): void
     {
-        $hookFile = \dirname(__DIR__) . '/_contrib/pre-commit';
+        $hookFile = config('phpcs.git_pre_commit_file');
         $gitHooksPath = config('phpcs.git_hooks_path');
 
         $this->copyPreCommitHook($hookFile, $gitHooksPath);
@@ -58,8 +58,6 @@ class HookSetupCommand extends Command
         if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
-
-        // $process->getOutput()
     }
 
     /**
@@ -75,7 +73,5 @@ class HookSetupCommand extends Command
         if (! $process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
-
-        // $process->getOutput()
     }
 }

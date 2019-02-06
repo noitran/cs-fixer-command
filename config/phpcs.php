@@ -97,6 +97,12 @@ return [
     ],
 
     /*
+     * Location and name of pre-commit hook file, that
+     * will be copied into git directory
+     */
+    'git_pre_commit_file' => \dirname(__DIR__) . '/_contrib/pre-commit',
+
+    /*
      * Git base path to install pre-commit hook
      *
      * For default projects without docker path should be

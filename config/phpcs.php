@@ -21,79 +21,80 @@ return [
      * https://github.com/FriendsOfPHP/PHP-CS-Fixer#usage
      */
     'rules' => [
+        // General fixers
         'psr0' => false,
-        '@PSR2' => true,
+        '@Symfony' => true,
         'array_syntax' => [
             'syntax' => 'short',
         ],
-        'no_unreachable_default_argument_value' => false,
-        'braces' => [
-            'allow_single_line_closure' => false,
-        ],
-        'binary_operator_spaces' => [
-            'align_double_arrow' => false,
-            'align_equals' => false,
-        ],
-        'trailing_comma_in_multiline_array' => true,
-        'whitespace_after_comma_in_array' => true,
-        'blank_line_after_opening_tag' => true,
-        'blank_line_before_return' => true,
-        'cast_spaces' => [
-            'space' => 'single',
-        ],
-        'function_typehint_space' => true,
-        'hash_to_slash_comment' => true,
-        'linebreak_after_opening_tag' => true,
-        'lowercase_cast' => true,
-        'method_separation' => true,
-        'new_with_braces' => true,
-        'no_blank_lines_after_class_opening' => true,
-        'no_blank_lines_after_phpdoc' => true,
-        'no_unused_imports' => true,
-        'phpdoc_align' => false,
-        'phpdoc_no_package' => true,
-        'phpdoc_order' => true,
-        'phpdoc_add_missing_param_annotation' => true,
-        'phpdoc_separation' => true,
-        'phpdoc_trim' => true,
-        'method_argument_space' => [
-            'ensure_fully_multiline' => true,
-            'keep_multiple_spaces_after_comma' => true,
-        ],
-        'single_quote' => true,
-        'phpdoc_no_empty_return' => false,
-        'single_blank_line_before_namespace' => true,
-        'blank_line_before_statement' => [
-            'statements' => [
-                'break', 'continue', 'declare', 'return', 'throw', 'try',
+        'not_operator_with_successor_space' => true,
+        'ordered_imports' => [
+            'imports_order' => [
+                'class',
+                'function',
+                'const',
             ],
         ],
-        'class_attributes_separation' => true,
-        'concat_space' => [
-            'spacing' => 'one',
+        'linebreak_after_opening_tag' => true,
+        'method_argument_space' => [
+            'keep_multiple_spaces_after_comma' => true,
+            'on_multiline' => 'ensure_fully_multiline',
         ],
-        'declare_equal_normalize' => [
-            'space' => 'single',
+        'fopen_flags' => true,
+        // 'heredoc_indentation' => true, // Can be enabled on PHP >= 7.3 environment
+        'list_syntax' => [
+            'syntax' => 'short',
         ],
-        'no_spaces_inside_parenthesis' => true,
-        'ternary_operator_spaces' => true,
-        'no_leading_import_slash' => true,
-
+        // @PhpCsFixer:risky
+        'logical_operators' => true,
         // @PHP71Migration
         'ternary_to_null_coalescing' => true,
-        'visibility_required' => true,
-
         // @PHP71Migration:risky
         'void_return' => true,
         'random_api_migration' => true,
         'pow_to_exponentiation' => true,
-
+        'declare_strict_types' => true,
+        // @Symfony overrides
+        'concat_space' => [
+            'spacing' => 'one',
+        ],
         // @Symfony:risky
-        'dir_constant' => true,
-        'function_to_constant' => true,
         'is_null' => true,
         'modernize_types_casting' => true,
+        'dir_constant' => true,
+        'non_printable_character' => [
+            'use_escape_sequences_in_strings' => false,
+        ],
+        'self_accessor' => true,
         'no_alias_functions' => true,
+        'function_to_constant' => true,
+        'ereg_to_preg' => true,
+        'fopen_flag_order' => true,
+        'implode_call' => true,
+        // Temporary disabled
+        // 'native_function_invocation' => [
+        //     'include' => [
+        //         '@compiler_optimized',
+        //     ],
+        //     'scope' => 'namespaced',
+        //     'strict' => true,
+        // ],
+        'php_unit_construct' => true,
+        // PHPUnit
+        'php_unit_method_casing' => [
+            'case' => 'snake_case',
+        ],
+        'php_unit_test_annotation' => [
+            'style' => 'annotation',
+        ],
+        // PHPDoc
+        'phpdoc_align' => [
+            'align' => 'left',
+        ],
+        'phpdoc_order' => true,
+        'phpdoc_add_missing_param_annotation' => true,
+        'phpdoc_var_annotation_correct_order' => true,
+        'phpdoc_trim_consecutive_blank_line_separation' => true,
     ],
 
     /*

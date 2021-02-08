@@ -33,6 +33,7 @@
             "Noitran\\CsFixer\\": "src"
         }
     },
+
     "autoload-dev": {
         "psr-4": {
             "Noitran\\CsFixer\\Tests\\": "tests"
